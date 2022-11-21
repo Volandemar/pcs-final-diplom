@@ -1,3 +1,6 @@
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfReader;
+
 import java.io.File;
 import java.util.Arrays;
 
