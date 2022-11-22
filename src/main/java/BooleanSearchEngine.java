@@ -1,15 +1,14 @@
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfReader;
 import com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor;
-import com.sun.jdi.Value;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
-import javax.sound.midi.Soundbank;
 import java.io.File;
 import java.io.IOException;
-import java.security.Key;
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 public class BooleanSearchEngine implements SearchEngine {
     protected Map<String, List<PageEntry>> resultMap = new HashMap<>();
@@ -49,5 +48,19 @@ public class BooleanSearchEngine implements SearchEngine {
         List<PageEntry> searchList = resultMap.get(word);
         searchList.sort(PageEntry::compareTo);
         return searchList;
+    }
+
+    public JSONArray outJSON(List<PageEntry> search) {
+        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        for (int i=0; i < search.size(); i ++){
+            PageEntry pageEntry = search.get(i);
+
+            jsonObject.put("page", pageEntry.getPage());
+            jsonObject.put("count", pageEntry.getCount());
+            jsonObject.put("pdfName", pageEntry.getPdfName());
+            jsonArray.add(jsonObject);
+        }
+        return jsonArray;
     }
 }

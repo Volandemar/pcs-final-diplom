@@ -1,11 +1,7 @@
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfReader;
-import com.itextpdf.kernel.pdf.canvas.parser.PdfTextExtractor;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -20,7 +16,7 @@ public class Main {
                         PrintWriter out = new PrintWriter(socket.getOutputStream());
                 ) {
                     String word = in.readLine();
-                    out.println((engine.search(word)));
+                    out.println(engine.outJSON(engine.search(word)));
                 }
             }
         } catch (IOException e) {

@@ -17,11 +17,12 @@ public class Client {
     protected static int PORT = 8989;
 
     protected static void clientStart() {
-        try (Socket clientSocket = new Socket(HOST, PORT); BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream())); PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
+        try (Socket clientSocket = new Socket(HOST, PORT);
+             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
             out.println("бизнес");
-            System.out.println(in.readLine());
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
+            String result = in.readLine();
+            System.out.println(result);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
