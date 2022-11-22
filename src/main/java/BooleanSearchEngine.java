@@ -30,7 +30,7 @@ public class BooleanSearchEngine implements SearchEngine {
                     freqs.put(word, freqs.getOrDefault(word, 0) + 1);
                 }
                 freqs.forEach((k, v) -> {
-                            PageEntry pageEntry = new PageEntry(pdfsDir.getName(), j, v);
+                            PageEntry pageEntry = new PageEntry(path.getName(), j, v);
                             if (!resultMap.containsKey(k)) {
                                 resultMap.put(k, new ArrayList<>(List.of(pageEntry)));
                             } else {
